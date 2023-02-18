@@ -1,0 +1,27 @@
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity >= 0.4.19 < 0.9.0;
+
+contract DumbCoin{
+
+    address deployer;
+    mapping(address=>uint) balances;
+
+    function DumCoin() public
+    {
+        deployer=msg.sender;
+    }
+
+    function createCoins(uint amount,address reciever) public
+    {
+        if(msg.sender==deployer){
+            //give coins to reciever
+            balances[reciever]+=amount;
+        }
+        else{
+            revert();
+        }
+    }
+    function viewBalance() public view returns (uint){
+        return balances[msg.sender];
+    }
+}
